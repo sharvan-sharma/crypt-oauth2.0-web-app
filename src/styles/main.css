@@ -1,0 +1,26 @@
+.fullscreen{
+    width:100%;
+    height:100vh
+}
+.fm{
+    font-size: 0.8rem;
+}
+.fsm{
+    font-size:0.6rem;
+}
+.fl{
+    font-size: 2rem;
+}
+.bg-black{
+    background-color: rgba(0,0,0,0.9);
+}
+.heading{
+    font-size: 4rem;
+}
+.subheading{
+    font-size:2rem;
+}
+.lp-mid{
+    height:70vh;
+    border-radius: 20px;
+}
