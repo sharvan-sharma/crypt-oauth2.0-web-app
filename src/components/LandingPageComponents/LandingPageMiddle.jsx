@@ -19,7 +19,7 @@ function LandingPageMiddle(){
                         <li>Oauth2.0 Service for your Application</li>
                         <li>Easy To Implement</li>
                     </ul>
-                    <Link to='/developer' className='h6 text-white text-decoration-none'>
+                    <Link to='/login' className='h6 text-white text-decoration-none'>
                         Register Your Application
                         <FontAwesomeIcon className='mx-3' icon={faArrowRight}/>
                     </Link>

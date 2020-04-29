@@ -9,7 +9,6 @@ const INITIAL_STATE = {
     },
     username: null,
     email: null,
-    transaction_id:null
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -20,9 +19,8 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 logged_in: action.payload.logged_in,
                 name: action.payload.name,
                 username: action.payload.username,
-                email: action.payload.email,
-                transaction_id:action.payload.transaction_id
-            })
+                email: action.payload.email
+            });
         default:
             return state
     }

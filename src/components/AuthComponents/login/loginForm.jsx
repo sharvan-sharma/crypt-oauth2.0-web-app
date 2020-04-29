@@ -34,13 +34,20 @@ function LoginForm(props){
                 setprogress(true)
                 axios.post('/login',{
                     withCredentials:true,
-                    username:username.current.value.toLowerCase(),
+                    username:username.current.value,
                     password:password.current.value
                 }).then(res=>{
                     setprogress(false)
                     if(res.data.status === 200){
-                        props.setCurrentUser(res.data)
-                        history.push('/')
+                        if(props.transaction_id !== undefined){
+                            console.log('decsion with transcation')
+                            props.setCurrentUser(res.data)
+                            history.push(`/oauth/decision?transaction_id=${props.transaction_id}`)
+                        }else {
+                            console.log('decision without transcation')
+                            props.setCurrentUser(res.data)
+                            history.push('/')
+                        }
                     }else if(res.data.status === 401){
                         setError({...error,page:{exist:1,message:'Invalid Credentials'}})
                     }else if(res.data.status === 422){
@@ -84,6 +91,10 @@ function LoginForm(props){
         </Fade>
     )
 }
+
+// const mapStateToProps =state=>({
+//     transaction_id:state.transaction.transaction_id
+// })
 
 const mapDispatchToProps = dispatch=>({
  setCurrentUser:userObject=>dispatch(setCurrentUser(userObject))

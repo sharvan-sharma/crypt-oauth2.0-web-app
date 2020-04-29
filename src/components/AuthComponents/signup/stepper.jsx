@@ -9,7 +9,6 @@ import PasswordForm from './Password'
 import axios from 'axios'
 import LinearProgress from '../../linearProgress'
 import Alert from '@material-ui/lab/Alert';
-import {connect} from 'react-redux'
 
 
 function getSteps() {
@@ -59,7 +58,7 @@ function HorizontalLabelPositionBelowStepper(props) {
     setprogress(true)
     axios.post('/register',{
       withCredentials:true,
-      data:{...data,transaction_id:props.transaction_id}
+      data:{...data,transaction_id:(props.transaction_id === undefined)?null:props.transaction_id }
     }).then(res=>{
       setprogress(false)
       if(res.data.status === 401){
@@ -105,8 +104,6 @@ function HorizontalLabelPositionBelowStepper(props) {
   );
 }
 
-const mapStateToProps = (state)=>({
-transaction_id:state.user.transaction_id
-})
 
-export default connect(mapStateToProps)(HorizontalLabelPositionBelowStepper)
+
+export default HorizontalLabelPositionBelowStepper

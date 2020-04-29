@@ -102,7 +102,7 @@ function PasswordForm(props){
                 </div>
                 <div className="form-group">
                    <Button disabled={props.activeStep === 0} onClick={props.back}>
-                        Back
+                        Cancel
                     </Button>
                     <button className='btn btn-dark ml-2' type='submit' disabled={disableButton()} >
                         {props.activeStep === props.steps.length - 1 ? 'Finish' : 'Next'}

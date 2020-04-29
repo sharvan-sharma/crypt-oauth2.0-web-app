@@ -1,0 +1,9 @@
+const projectActionTypes = {
+    SET_CURRENT_PROJECT:'SET_CURRENT_PROJECT',
+    SET_REDIRECT_URIS:'SET_REDIRECT_URIS',
+    SET_ORIGIN_URIS:'SET_ORIGIN_URIS',
+    SET_APP_NAME:'SET_APP_NAME',
+    SET_SECRET:'SET_SECRET'
+}
+
+export default projectActionTypes

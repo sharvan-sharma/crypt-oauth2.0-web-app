@@ -24,3 +24,26 @@
     height:70vh;
     border-radius: 20px;
 }
+
+.fixed-nav{
+    position:fixed;
+    width:100%;
+    top:0;
+    left:0;
+    z-index:2
+}
+
+.client-details{
+    position:fixed;
+    width:100%;
+    height:100vh;
+    top:0;
+    left:0;
+    z-index:4;
+    background-color:rgba(0, 0, 0, 0.699)
+}
+
+@media only screen and (max-width: 768px) {
+
+}
+
