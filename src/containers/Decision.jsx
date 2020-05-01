@@ -1,5 +1,4 @@
 import React,{useState,useEffect} from 'react';
-import {connect} from 'react-redux'
 import Brand from '../components/LandingPageComponents/Nav/BrandName'
 import CircularProgress from '../components/circularProgress'
 import axios from 'axios'

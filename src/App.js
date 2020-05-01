@@ -19,7 +19,6 @@ import 'popper.js/dist/popper'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.js'
 import './styles/main.css'
-import {setTransaction}  from './redux/transaction/transaction.actions'
 
 
 function App(props) {
@@ -70,13 +69,13 @@ function App(props) {
                     }}  />
                 <Route exact path='/oauth/decision' component={(prop)=>{
                    const transaction_id = querystring.parse(prop.location.search).transaction_id
-                  console.log(transaction_id)
+                   console.log(transaction_id)
                    if(transaction_id !== undefined){
                       console.log('transaction_id is',transaction_id)
                       return <Decision transaction_id={transaction_id}/>
                     }else{
                       console.log('someone click oauth/decision without transaction_id')
-                      return <Redirect to='/devconsole' />
+                      return <Redirect to='/' />
                     }
                   }} />
                 <Route path='/' component={DevConsole} />

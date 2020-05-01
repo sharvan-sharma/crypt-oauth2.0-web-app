@@ -1,5 +1,7 @@
 import React,{useState} from 'react'
 import axios from 'axios'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faCode} from '@fortawesome/free-solid-svg-icons'
 
 function ApplicationItems(props){
 
@@ -20,6 +22,7 @@ const revokeAccess =()=>{
 
 return (<div className='border-bottom border-gray p-2 d-flex justify-content-between'>
             <label className='h6 my-auto'>
+                <FontAwesomeIcon icon={faCode} className='mr-2' />
                 {(props.app.projectname.lenght > 20)?
                 props.app.projectname.substring(0,20)+'...'
                 :props.app.projectname}

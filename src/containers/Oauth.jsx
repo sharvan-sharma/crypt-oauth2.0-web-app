@@ -3,7 +3,7 @@ import axios from 'axios'
 import querystring from 'query-string'
 import history from '../history'
 import CircularProgress from '../components/circularProgress'
-import {setTransaction} from '../redux/transaction/transaction.actions'
+//import {setTransaction} from '../redux/transaction/transaction.actions'
 import {connect} from 'react-redux'
 
 

@@ -24,4 +24,14 @@ const setSecret = (secret)=>({
     payload:secret
 })
 
-export {setCurrentProject,setOriginURIs,setRedirectURIs,setAppName,setSecret}
+const setHomepage = (homepage)=>({
+    type:projectActionTypes.SET_HOMEPAGE,
+    payload:homepage
+})
+
+const setDescription = (description)=>({
+    type:projectActionTypes.SET_DESCRIPTION,
+    payload:description
+})
+
+export {setCurrentProject,setOriginURIs,setRedirectURIs,setAppName,setSecret,setHomepage,setDescription}

@@ -1,6 +1,6 @@
 import React,{useState,useRef} from 'react';
 import {connect} from 'react-redux'
-import {setAppName} from '../../../redux/project/project.actions'
+import {setHomepage} from '../../../redux/project/project.actions'
 import axios from 'axios'
 import LinearProgress from '../../linearProgress'
 import EditIcon from '@material-ui/icons/Edit';
@@ -8,28 +8,39 @@ import IconButton from '@material-ui/core/IconButton';
 import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
 import Divider from '@material-ui/core/Divider'
+import validation from '../../../../src/utils/validations/index'
+import Alert from '@material-ui/lab/Alert'
 
-function AppNameForm(props){
+function Homepage(props){
 
- const name = useRef('')
+ const link = useRef('')
  const [flag,setflag] = useState(true)
  const [progress,setprogress] = useState(false)
  const [error,setError]  = useState({exist:0,message:''})
  const [mode,setmode] = useState('unedit')
 
- const changeAppName = ()=>{
+ const validate = ()=>{
+     if(!validation.is_url(link.current.value)){
+        setError({exist:1,message:'invalid_url'})
+     }else{
+        setError({exist:0,message:''})
+     }
+ }
+
+ const changelink = ()=>{
      setprogress(true)
-     axios.post('/client/editprojectname',{
+     axios.post('/client/edithomepage',{
          withCredentials:true,
          project_id:props.project_id,
-         new_projectname:name.current.value
+         new_link:link.current.value
      }).then(res=>{
         setprogress(false)
         if(res.data.status === 500){
             setError({...error,exist:1,message:'server_error'})
         }else{
              setError({...error,exist:0,message:''})
-             props.setAppName(res.data.name)
+             props.setHomepage(res.data.homepagelink)
+             setmode('unedit')
              setflag(!flag)
         }
      }).catch(err=>{
@@ -38,12 +49,12 @@ function AppNameForm(props){
  }
 
 return (
-    <div>
-        <label className='h5 mb-4'>Application Name</label>
+    <div className='mt-4'>
+        <label className='h6 '>Homepage link</label>
         {(progress)?<LinearProgress />:<></>}
         {(mode === 'unedit')?
         <div className="d-flex fm my-2 justify-content-between">
-            <label className='my-auto'><b>{props.projectname}</b></label>
+            <a  href={props.homepagelink} className='my-auto'><b>{props.homepagelink}</b></a>
             <div className='d-flex justify-content-center'>
                 <IconButton size='small' className='mr-2' disabled={progress} onClick={()=>setmode('edit')}>
                     <EditIcon fontSize='small'/>
@@ -51,10 +62,10 @@ return (
             </div>
         </div>
         :
-        <div className="d-flex fm my-2 justify-content-between">
-            <input type="text" required className="form-control fm" key={(flag)?0:1} ref={name} id='appname' defaultValue={props.projectname} placeholder="Enter Application Name" />
+        <div className="d-flex fm  justify-content-between">
+            <input type="text"  className="form-control fm" onBlur={validate} key={(flag)?0:1} ref={link} id='link' defaultValue={props.homepagelink} placeholder="Enter homepage link" />
             <div className='d-flex justify-content-center'>
-                <IconButton size='small' className='mr-2' disabled={progress} onClick={changeAppName}>
+                <IconButton size='small' className='mr-2' disabled={progress} onClick={changelink}>
                     <CheckIcon fontSize='small'/>
                 </IconButton>
                 <IconButton size='small' className='mr-2' disabled={progress} onClick={()=>setmode('unedit')}>
@@ -62,19 +73,20 @@ return (
                 </IconButton>
             </div>
         </div>}
-        <small>The name of your OAuth 2.0 client. This name is only used to identify the client in the console and will not be shown to end users.</small>   
+        {(error.exist === 1)?<Alert severity='error'>{error.message}</Alert>:<></>}
+        <small className='text-muted'>The Homepage link is used to redirect user to your homepage from our store.</small>   
         <Divider/>
     </div>
 )
 }
 
 const mapStateToProps = state=>({
-    projectname:state.project.projectname,
+    homepagelink:state.project.homepagelink,
     project_id:state.project._id
 })
 
 const mapDispatchToProps = dispatch=>({
-    setAppName:name=>dispatch(setAppName(name))
+    setHomepage:link=>dispatch(setHomepage(link))
 })
 
-export default connect(mapStateToProps,mapDispatchToProps)(AppNameForm)
+export default connect(mapStateToProps,mapDispatchToProps)(Homepage)

@@ -30,9 +30,12 @@ function ClientItem(props){
     <tr>
         <td>
                 <Checkbox
+                    key={(props.update)?0:1}
                     className='p-0'
                     size='small'
                     color="default"
+                    checked={props.check}
+                    onChange={(e)=>{(e.target.checked)?props.select(props.client.client_id):props.deselect(props.client.client_id)}}
                 />
         </td>
         <td>{props.client.projectname}</td>

@@ -1,5 +1,4 @@
 import React from 'react';
-import Fab from '@material-ui/core/Fab';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -21,7 +20,7 @@ function ProfileMenu(props) {
   };
 
   const logout = ()=>{
-    axios.get('http://localhost:5000/logout',{
+    axios.get('/logout',{
       withCredentials:true
     })
     .then(res=>{

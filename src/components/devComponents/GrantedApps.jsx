@@ -34,8 +34,7 @@ function GrantedApps(){
         </div>)
     }else if(state.flag === 2){
         return (
-            <div className='d-flex justify-content-center overflow-scroll' style={{marginTop:'15vh',height:'70vh'}}>
-                <div className='col-12 col-md-6 col-lg-6 col-xl-6 d-flex flex-column'>
+            <>
                     <p className='h4'>Access Granted Applications</p>
                     <Divider/>
                     {(state.apps.length === 0)?
@@ -46,8 +45,7 @@ function GrantedApps(){
                             return <ApplicationItem app={app} key={index} setc={setc} c={c} />
                         })
                     }
-                </div>
-            </div>
+            </>
         )
     }
 }

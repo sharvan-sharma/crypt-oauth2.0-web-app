@@ -1,7 +1,6 @@
 import React,{useState,useRef} from 'react';
 import LinearProgress from '../../linearProgress'
 import Alert from '@material-ui/lab/Alert'
-import utils from '../../../utils/index'
 import Validations from '../../../utils/validations/index'
 import axios from 'axios'
 import history from '../../../history'

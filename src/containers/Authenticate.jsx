@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React from 'react'
 import Login from '../components/AuthComponents/Login'
 import Signup from '../components/AuthComponents/Signup'
 import CopyRight from '../components/CopyRight'

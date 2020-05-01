@@ -48,7 +48,7 @@ return (
                 {(progress)?<LinearProgress />:<></>}
                 {(error.uri.exist === 1)?<Alert severity='error' variant='filled' >{error.message}</Alert>:<></>}
                 <div className='d-flex my-2'>
-                    <input type="text" key={flag} className="form-control" ref={uri}  id='appname' placeholder=" Origin URI" />
+                    <input type="text" key={flag} className="form-control" ref={uri}  id='origin' placeholder=" Origin URI" />
                     <button type="submit" className="btn btn-dark mx-1 text-nowrap" disabled={progress} onClick={addUri}>ADD URI</button>
                 </div>
                 <div className='mt-4'>
