@@ -14,6 +14,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
+    "gh-pages": "^2.2.0",
     "jquery": "^3.4.1",
     "popper.js": "^1.14.3",
     "query-string": "^6.12.1",
@@ -26,6 +27,8 @@
     "redux-logger": "^3.0.6"
   },
   "scripts": {
+     "predeploy": "npm run build",
+     "deploy": "gh-pages -b master -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -46,5 +49,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://crypt-server.herokuapp.com"
+  "proxy": "https://crypt-server.herokuapp.com",
+  "homepage": "https://CryPt-Oauth2-service.github.io"
 }
