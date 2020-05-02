@@ -6,6 +6,10 @@ import {Provider} from 'react-redux'
 import store from './redux/store'
 import history from './history'
 import ErrorBoundary from './components/errorcomponents/ErrorBoundary'
+import axios from 'axios'
+
+axios.defaults.baseURL = 'https://crypt-server.herokuapp.com'
+axios.defaults.withCredentials = true
 
 
 ReactDOM.render(
