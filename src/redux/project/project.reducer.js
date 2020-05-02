@@ -22,6 +22,7 @@ const projectReducer = (state=INITIAL_STATE,action)=>{
         case projectActionTypes.SET_REDIRECT_URIS :return ({...state,RedirectURIs:action.payload})
         case projectActionTypes.SET_APP_NAME: return ({...state,projectname:action.payload})
         case projectActionTypes.SET_SECRET: return ({...state,client_secret:action.payload})
+        case projectActionTypes.RESET_PROJECT:return ({...INITIAL_STATE})
         default : return state
     }
 }

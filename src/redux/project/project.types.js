@@ -5,7 +5,8 @@ const projectActionTypes = {
     SET_APP_NAME:'SET_APP_NAME',
     SET_SECRET:'SET_SECRET',
     SET_DESCRIPTION:'SET_DESCRIPTION',
-    SET_HOMEPAGE:'SET_HOMEPAGE'
+    SET_HOMEPAGE:'SET_HOMEPAGE',
+    RESET_PROJECT:'RESET_PROJECT'
 }
 
 export default projectActionTypes

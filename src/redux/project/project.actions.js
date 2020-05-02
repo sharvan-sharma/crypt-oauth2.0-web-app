@@ -34,4 +34,9 @@ const setDescription = (description)=>({
     payload:description
 })
 
-export {setCurrentProject,setOriginURIs,setRedirectURIs,setAppName,setSecret,setHomepage,setDescription}
+const ResetProject = ()=>({
+    type:projectActionTypes.RESET_PROJECT,
+    payload:{}
+})
+
+export {setCurrentProject,setOriginURIs,setRedirectURIs,setAppName,setSecret,setHomepage,setDescription,ResetProject}

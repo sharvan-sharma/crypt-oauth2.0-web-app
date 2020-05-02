@@ -25,11 +25,11 @@ function GrantedApps(){
     },[c,])
 
     if(state.flag === 0){
-        return (<div className='col-12 d-flex justify-content-center align-items-center' style={{height:'60vh'}}>
+        return (<div className='col-12 d-flex justify-content-center align-items-center' style={{height:'30vh'}}>
                 <CircularProgress />
         </div>)
     }else if(state.flag === 1){
-        return (<div className='col-12 d-flex justify-content-center align-items-center' style={{height:'60vh'}}>
+        return (<div className='col-12 d-flex justify-content-center align-items-center' style={{height:'30vh'}}>
                 <p>{`message:{error:'server_error'}`}</p>
         </div>)
     }else if(state.flag === 2){

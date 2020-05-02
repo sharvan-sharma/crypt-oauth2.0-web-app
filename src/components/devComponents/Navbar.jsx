@@ -4,6 +4,7 @@ import ProfileMenu from '../devComponents/profileMenu'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faEllipsisH,faCode} from '@fortawesome/free-solid-svg-icons'
 import Brand from './BlackBrand'
+import history from '../../history'
 
 
 function Navbar(props){
@@ -19,10 +20,10 @@ return (
   <div className="collapse navbar-collapse" id="navbarSupportedContent">
     <div className="navbar-nav ml-auto">
         <div className='m-lg-1 mt-4 mb-1 mx-1'>
-          <Link to = '/devconsole/newproject' className='btn btn-outline-light'>
+          <button onClick={()=>history.push('/devconsole/newproject')}  className='btn btn-outline-light navbar-toggler' data-toggle="collapse" data-target="#navbarSupportedContent">
             <FontAwesomeIcon icon={faCode} className='mr-1'/> 
             New Application
-          </Link>
+          </button>
         </div>
         <div className='m-1' >
           <ProfileMenu />

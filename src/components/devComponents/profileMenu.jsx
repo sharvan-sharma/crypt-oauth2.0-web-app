@@ -7,9 +7,13 @@ import history from '../../history'
 import axios from 'axios'
 import {connect} from 'react-redux'
 import {setCurrentUser} from '../../redux/user/user.actions'
+import CircularProgress from '../circularProgress'
+import {ResetProject}  from '../../redux/project/project.actions'
 
 function ProfileMenu(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const [progress,setprogress] = React.useState(false)
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -20,10 +24,12 @@ function ProfileMenu(props) {
   };
 
   const logout = ()=>{
+    setprogress(true)
     axios.get('/logout',{
       withCredentials:true
     })
     .then(res=>{
+      setprogress(false)
       if(res.data.status === 200){
         props.setCurrentUser({
           name:{
@@ -35,11 +41,12 @@ function ProfileMenu(props) {
           email:null,
           logged_in:false
         })
+        props.ResetProject()
         history.push('/')
       }
     })
     .catch(err=>{
-
+       setprogress(false)
     })
   }
 
@@ -70,7 +77,11 @@ function ProfileMenu(props) {
         </MenuItem>
         <MenuItem><b>Welcome {beautifyname(props.user.name)}</b></MenuItem>
         <MenuItem><span className='fm'>CryPt Username : <strong>{props.user.username}</strong></span></MenuItem>
-        <MenuItem ><button onClick={logout}  className='btn btn-dark'>Logout</button></MenuItem>
+        <MenuItem >
+                {(progress)?
+                <div className='d-flex justify-content-center fm'><CircularProgress/></div>
+                :<button onClick={logout}  className='btn btn-dark' disabled={progress}>Logout</button>}
+        </MenuItem>
       </Menu>
     </div>
   );
@@ -81,7 +92,8 @@ const mapStateToProps = state=>({
 })
 
 const mapDispatchToProps = dispatch=>({
-setCurrentUser:userObject=>dispatch(setCurrentUser(userObject))
+setCurrentUser:userObject=>dispatch(setCurrentUser(userObject)),
+ResetProject: ()=>dispatch(ResetProject())
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(ProfileMenu)

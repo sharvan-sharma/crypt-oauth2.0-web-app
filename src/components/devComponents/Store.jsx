@@ -38,7 +38,7 @@ function Store(){
         },[])
 
         if(state.flag===0){
-            return (<div className='d-flex justify-content-center align-items-center' style={{height:'60vh'}}>
+            return (<div className='d-flex justify-content-center align-items-center' style={{height:'30vh'}}>
                 <CircularProgress/>
                 </div>)
         }else if(state.flag ===1){
@@ -51,7 +51,7 @@ function Store(){
             <p className='h4'>Applications Registered With CryPt</p>
             <Divider/>
             {(state.AppsArray.length === 0)?<Alert severity='info' className='mt-4'>No Application Registered Yet </Alert>:<></>}
-            <div className='d-flex '>
+            <div className='d-flex flex-wrap'>
                 
             {
              state.AppsArray.map((app,index)=>{
