@@ -25,12 +25,10 @@ function App(props) {
    const [screen,resetScreen] = useState({loading:true,error:false})
 
    useEffect(() => {
-     console.log('axios call to check login,c=app')
      axios.get('/checklogin',{
        withCredentials:true
      })
      .then(res=>{
-          console.log(res.data)
           if(res.data.logged_in){
               props.setCurrentUser(res.data)
               resetScreen({...screen,loading:false})
@@ -46,18 +44,15 @@ function App(props) {
    },[])
 
   if (screen.loading) {
-    console.log('loading,c=app')
     return (<>
               <div className='d-flex justify-content-center align-items-center fullscreen'>
                     <CircularProgress/>
               </div>
             </>)
   }else if (screen.error){
-    console.log('error show server_error screen,c=app')
     return <ServerError/>
   } else {
     if (props.logged_in) {
-      console.log('loggedin routes,c=app')
       return (<Switch>
                 <Route exact path='/oauth' component={(prop)=>{
                     const query = querystring.parse(prop.location.search)
@@ -69,12 +64,9 @@ function App(props) {
                     }}  />
                 <Route exact path='/oauth/decision' component={(prop)=>{
                    const transaction_id = querystring.parse(prop.location.search).transaction_id
-                   console.log(transaction_id)
                    if(transaction_id !== undefined){
-                      console.log('transaction_id is',transaction_id)
                       return <Decision transaction_id={transaction_id}/>
                     }else{
-                      console.log('someone click oauth/decision without transaction_id')
                       return <Redirect to='/' />
                     }
                   }} />
@@ -84,7 +76,6 @@ function App(props) {
                 </Route>
               </Switch>)
     } else {
-      console.log('not loggedin routes,c=app')
       return (<Switch>
                   <Route exact path='/oauth' component={(prop)=>{
                     const query = querystring.parse(prop.location.search)
@@ -99,10 +90,8 @@ function App(props) {
                   <Route exact path='/login' component={(prop)=>{
                     const transaction_id = querystring.parse(prop.location.search).transaction_id
                     if(transaction_id !== undefined){
-                      console.log('login with transcation')
                       return <Authenticate page='login' transaction_id={transaction_id} />
                     }else{
-                      console.log('login without transcation')
                       return <Authenticate page='login' />
                     }
                     }} />

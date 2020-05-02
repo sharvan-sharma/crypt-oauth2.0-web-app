@@ -49,6 +49,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://crypt-server.herokuapp.com",
-  "homepage": "https://CryPt-Oauth2-service.github.io"
+  "proxy":"https://crypt-server.herokuapp.com",
+  "homepage": "https://crypt-oauth2-service.github.io"
 }

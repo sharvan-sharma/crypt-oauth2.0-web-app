@@ -49,6 +49,7 @@ function LoginForm(props){
                             history.push('/')
                         }
                     }else if(res.data.status === 401){
+                        console.log(res.data)
                         setError({...error,page:{exist:1,message:'Invalid Credentials'}})
                     }else if(res.data.status === 422){
                         setError({...error,page:{exist:1,message:'User Not Verified!'}})
@@ -56,6 +57,7 @@ function LoginForm(props){
                         setError({...error,page:{exist:1,message:'Something went Wrong on our End'}})
                     }
                 }).catch(err=>{
+
                     setprogress(false)
                     setError({...error,page:{exist:1,message:'Something went Wrong on our End'}})
                 })
