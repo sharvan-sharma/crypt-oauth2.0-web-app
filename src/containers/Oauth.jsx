@@ -31,9 +31,9 @@ function Oauth(props){
         }else if(res.data.status === 200){
                 window.addEventListener('message', event =>window.location = event.data, false);
             if(res.data.logged_in){
-                window.open(`http://localhost:3000/oauth/decision?transaction_id=${res.data.transaction_id}`, 'Decision', 'width=400,height=600,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no')
+                window.open(`https://crypt-oauth.web.app/oauth/decision?transaction_id=${res.data.transaction_id}`, 'Decision', 'width=400,height=600,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no')
             }else{
-                window.open(`http://localhost:3000/login?transaction_id=${res.data.transaction_id}`, 'Authenticate', 'width=400,height=600,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no') 
+                window.open(`https://crypt-oauth.web.app/login?transaction_id=${res.data.transaction_id}`, 'Authenticate', 'width=400,height=600,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no') 
             }   
         }
     }).catch(err=>{

@@ -20,7 +20,7 @@ return (
   <div className="collapse navbar-collapse" id="navbarSupportedContent">
     <div className="navbar-nav ml-auto">
         <div className='m-lg-1 mt-4 mb-1 mx-1'>
-          <button onClick={()=>history.push('/devconsole/newproject')}  className='btn btn-outline-light navbar-toggler' data-toggle="collapse" data-target="#navbarSupportedContent">
+          <button onClick={()=>history.push('/devconsole/newproject')}  className='btn btn-outline-light' data-toggle="collapse" data-target="#navbarSupportedContent">
             <FontAwesomeIcon icon={faCode} className='mr-1'/> 
             New Application
           </button>

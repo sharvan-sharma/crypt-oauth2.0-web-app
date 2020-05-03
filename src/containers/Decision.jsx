@@ -7,9 +7,7 @@ import LinearProgress from '../components/linearProgress'
 
 
 function Descision(props){
-    const [progress,setprogress] = useState(false)
-
-    const [uri,seturi]=useState('')
+const [progress,setprogress] = useState(false)
 
 const [state,setstate] =useState({flag:0,projectname:'',scope:''})
 
@@ -22,13 +20,12 @@ const decision = (decision)=>{
             decision
         }
     }).then(res=>{
-        console.log(res.data)
          setprogress(false)
         if(res.data.status === 500){
             setstate({...state,flag:1})
         }else{
             const queryString = querystring.stringify(res.data)
-            const baseurl = uri+'?'+queryString
+            const baseurl = res.data.redirect_uri+'?'+queryString
             window.opener.postMessage(baseurl)
             window.close()
         }
@@ -44,7 +41,6 @@ useEffect(()=>{
         transaction_id:props.transaction_id
     }).then(res=>{
         if(res.data.status === 200){
-            seturi(res.data.redirect_uri)
             setstate({...state,flag:2,scope:res.data.scope,projectname:res.data.projectname})
         }else{
             setstate({...state,flag:1})
