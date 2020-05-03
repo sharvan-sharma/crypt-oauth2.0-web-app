@@ -90,7 +90,7 @@ function Uri(props){
                     :<p className='fm text-muted'>{`For use with requests from a web server. 
                                                     This is the path in your application that 
                                                     users are redirected to after they have authenticated
-                                                     with Google. The path will be appended with the authorization 
+                                                     with CryPt. The path will be appended with the authorization 
                                                      code for access. Must have a protocol. Cannot contain URL 
                                                      fragments or relative paths. Cannot be a public IP address.`}</p>}
                     <input type="text" className="form-control mb-2" ref={uri} onBlur={validate} id="projectname" placeholder="Enter Uri" required/>
