@@ -8,7 +8,7 @@ export default function NavLinkList(){
                     <Link className="nav-link text-secondary" to="/login">Developer Console</Link>
                 </li>
                 <li className="nav-item mr-4">
-                    <Link className="nav-link text-secondary" to="/documentation">Documentation</Link>
+                    <a className="nav-link text-secondary" href="https://crypt-docs.netlify.app">Documentation</a>
                 </li>
                 <li className="nav-item mr-4">
                     <Link className="nav-link text-secondary" to="/about">About</Link>
