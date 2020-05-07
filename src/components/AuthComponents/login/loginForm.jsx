@@ -84,10 +84,10 @@ function LoginForm(props){
                     <label >Password</label>
                     <input type="password" className="form-control" onBlur={checkPassword} id="password" ref={password} placeholder="Password" required/>
                     {(error.password.exist === 1)?<Alert variant="filled" className='my-1 py-0 fsm' severity="error">{error.password.message}</Alert>:<></>}
-                    <button type='button' className='btn btn-link btn-sm p-0' onClick={()=>props.setflag(false)}>forgot password ?</button>
+                    <button type='button' className='btn btn-link btn-sm p-0' onClick={()=>props.setflag(false)}>Forgot password ?</button>
                 </div>
                 <div className="form-group">
-                   <button type="submit" className="btn btn-block btn-dark" disabled={progress}>login</button>
+                   <button type="submit" className="btn btn-block btn-dark" disabled={progress}>Login</button>
                 </div>
             </form>
         </Fade>
