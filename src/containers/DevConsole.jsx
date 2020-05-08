@@ -9,6 +9,8 @@ import querystring from 'query-string'
 import EditForm from '../components/devComponents/EditForm'
 import Fade from '@material-ui/core/Fade'
 import UserDisplay from '../components/devComponents/Userdisplay'
+import LinkIcons from '../components/LinkIcons'
+
 function DevConsole(){
 
     return (
@@ -35,7 +37,8 @@ function DevConsole(){
                         <Redirect to = '/'/>
                     </Route>
                 </Switch>
-                <div className='d-flex justify-content-end p-4 border-top broder-gray'>
+                <div className='d-flex justify-content-between p-4 border-top broder-gray'>
+                    <LinkIcons/>
                         <CopyRight />
                     </div>
                     

@@ -25,8 +25,8 @@ function LandingPageMiddle(){
                     </Link>
                 </div>
             </div>
-            <div className='col-10 col-md-5 col-lg-6 my-auto'>
-
+            <div className='col-10 col-md-5 col-lg-6 my-auto landing-png'>
+                <img src='./landing.png' className='img-fluid'  />
             </div>
         </div>
     )
