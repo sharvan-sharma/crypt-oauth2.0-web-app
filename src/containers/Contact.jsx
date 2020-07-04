@@ -1,6 +1,5 @@
 import React,{useState} from 'react';
 import TextField from '@material-ui/core/TextField';
-import BrandName  from '../components/LandingPageComponents/Nav/BrandName'
 import Fade from '@material-ui/core/Fade'
 import axios from 'axios'
 import isEmail from '../utils/validations/isEmail'
@@ -190,7 +189,7 @@ return (
             </div>
             {
                 (state.message.rem !== 500)?
-                <p className='text-fluid' style={{fontSize:'0.8rem'}}>Remaining Characters {state.message.rem}/500</p>
+                <p className='text-muted' style={{fontSize:'0.8rem'}}>Remaining Characters {state.message.rem}/500</p>
                 :<></>
             }
             <div className='form-group my-4'>
