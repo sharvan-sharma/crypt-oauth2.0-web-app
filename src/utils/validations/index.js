@@ -5,6 +5,8 @@ import ContainsSpecialChars from './containsepcialchars'
 import ValidateEmail from './validateEmail'
 import ValidateUsername from './validateUsername'
 import is_url from './url'
+import isEmail from './isEmail'
+
 const validation = {
     Required,
     inRange,
@@ -12,7 +14,8 @@ const validation = {
     ContainsSpecialChars,
     ValidateEmail,
     ValidateUsername,
-    is_url
+    is_url,
+    isEmail
 }
 
 export default validation

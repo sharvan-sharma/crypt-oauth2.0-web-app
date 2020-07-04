@@ -12,6 +12,7 @@ import ResetPassword from './containers/ResetPassword'
 import DevConsole from './containers/DevConsole'
 import Decision from './containers/Decision'
 import Oauth from './containers/Oauth'
+import Contact from './containers/Contact'
 import {Route,Switch,Redirect} from 'react-router-dom'
 import querystring from 'query-string'
 import 'jquery/src/jquery'
@@ -106,6 +107,7 @@ function App(props) {
                         const token = val.vt
                         return <VerifyEmail token = {token} />
                       }}/>
+                  <Route exact path='/contact' component={Contact} />
                   <Route component={Page404}/>
               </Switch>)
     }

@@ -11,6 +11,16 @@
 .fl{
     font-size: 2rem;
 }
+
+.fmd{
+    font-size:1.2rem
+}
+.flg{
+    font-size:1.5rem
+}
+.fxl{
+    font-size:2rem;
+}
 .bg-black{
     background-color: rgba(0,0,0,0.9);
 }
@@ -42,9 +52,17 @@
     z-index:4;
     background-color:rgba(0, 0, 0, 0.699)
 }
-
+.mbl{
+    display:none 
+}
 @media only screen and (max-width: 768px) {
 .landing-png{
+    display:none !important
+}
+.mbl{
+    display: block;
+}
+.pc{
     display:none !important
 }
 }

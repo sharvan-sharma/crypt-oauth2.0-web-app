@@ -13,35 +13,45 @@ import {connect} from 'react-redux'
 function EditForm(props){
 
     const [state,setstate] = useState({flag:0})
+    const [progress,setprogress] = useState({flag:false,button:''})
+    const [error,setError] = useState({reset:{exist:0,msg:''},delete:{exist:0,msg:''}})
 
     const resetSecret = ()=>{
+        setprogress({flag:true,button:'reset'})
         axios.post('/client/resetsecret',{
             withCredentials:true,
             project_id:props.project_id
         }).then(res=>{
+             setprogress({flag:false,button:''})
             if(res.data.status === 500){
-                console.log('server_error')
+                 setError({...error,reset:{exist:1,msg:'error ocuured'}})
             }else {
                 props.setSecret(res.data.client_secret)
             }
         })
-        .catch(error=>console.log(error))
+        .catch(error=>{
+             setprogress({flag:false,button:''})
+             setError({...error,reset:{exist:1,msg:'error ocuured'}})
+        })
     }
 
     const deleteproject = ()=>{
+        setprogress({flag:true,button:'delete'})
         axios.post('/client/deleteproject',{
             withCredentials:true,
             project_id:props.project_id
         }).then(res=>{
+            setprogress({flag:false,button:''})
             if(res.data.status === 500){
-                console.log('server_error')
+                setError({...error,reset:{exist:1,msg:'server_error'}})
             }else if(res.data.status === 401){
-                console.log('client doesnot exist')
+                setError({...error,reset:{exist:1,msg:'unauthorised access'}})
             }else if(res.data.status === 200){
                 history.push('/devconsole')
             }
         }).catch(err=>{
-            console.log(err)
+            setprogress({flag:false,button:''})
+             setError({...error,delete:{exist:1,msg:'error ocuured'}})
         })
     }
 
@@ -73,9 +83,13 @@ function EditForm(props){
         <div className='d-flex flex-wrap border-bottom border-dark p-2'  style={{marginTop:'10vh'}}>
             <button className='btn btn-light rounded-circle' onClick={()=>history.push('/devconsole')} ><FontAwesomeIcon icon={faChevronLeft} /></button>
             <label className='my-auto h5 mx-2'>Client ID for Web Application</label>
-            <button className='btn btn-link bg-light text-decoration-none mx-2' onClick={resetSecret}><FontAwesomeIcon icon={faUndo}/>RESET SECRET</button>
-            <button className='btn btn-link bg-light text-decoration-none mx-2' onClick={deleteproject}><FontAwesomeIcon icon={faTrashAlt}/> DELETE</button>
+            {(progress.flag && progress.button === 'reset')?<CircularProgress/>:
+            <button className='btn btn-link bg-light text-decoration-none mx-2' onClick={resetSecret}><FontAwesomeIcon icon={faUndo}/>RESET SECRET</button>}
+            {(progress.flag && progress.button === 'delete')?<CircularProgress/>:
+            <button className='btn btn-link bg-light text-decoration-none mx-2' onClick={deleteproject}><FontAwesomeIcon icon={faTrashAlt}/> DELETE</button>}
         </div>
+        {(error.delete.exist === 1)?<Alert severity='error' className='my-1' variant='filled'>{error.delete.msg}</Alert>:<></>}
+        {(error.reset.exist === 1)?<Alert severity='error'   className='my-1' variant='filled'>{error.reset.msg}</Alert>:<></>}
         <div className='d-flex flex-row-reverse m-lg-4 m-md-2 flex-wrap '>
             <ReadForm  />
             <WriteForm/>
