@@ -9,7 +9,7 @@ import ErrorBoundary from './components/errorcomponents/ErrorBoundary'
 import axios from 'axios'
 
 
-axios.defaults.baseURL = 'http://crypt-server.herokuapp.com'
+axios.defaults.baseURL = 'https://crypt-server.herokuapp.com'
 axios.defaults.withCredentials = true
 
 
