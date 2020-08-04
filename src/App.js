@@ -1,18 +1,9 @@
-import React , {useState,useEffect} from 'react'
+import React , {useState,useEffect,Suspense} from 'react'
 import {connect} from 'react-redux'
 import {setCurrentUser} from './redux/user/user.actions'
 import axios from 'axios'
 import CircularProgress from './components/circularProgress'
 import ServerError from './components/errorcomponents/serverError'
-import Page404 from './components/Page404'
-import LandingPage from './containers/LandingPage'
-import Authenticate from './containers/Authenticate'
-import VerifyEmail from './containers/VerifyEmail'
-import ResetPassword from './containers/ResetPassword'
-import DevConsole from './containers/DevConsole'
-import Decision from './containers/Decision'
-import Oauth from './containers/Oauth'
-import Contact from './containers/Contact'
 import {Route,Switch,Redirect} from 'react-router-dom'
 import querystring from 'query-string'
 import 'jquery/src/jquery'
@@ -20,7 +11,22 @@ import 'popper.js/dist/popper'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.js'
 import './styles/main.css'
+const DevConsole = React.lazy(() => import('./containers/DevConsole'))
+const Oauth = React.lazy(() => import('./containers/Oauth'))
+const Contact = React.lazy(() => import('./containers/Contact'))
+const Authenticate = React.lazy(() => import('./containers/Authenticate'))
+const Page404 = React.lazy(()=>import('./components/Page404'))
+const LandingPage = React.lazy(() => import('./containers/LandingPage'))
+const VerifyEmail = React.lazy(() => import('./containers/VerifyEmail'))
+const ResetPassword = React.lazy(() => import('./containers/ResetPassword'))
+const Decision = React.lazy(()=>import('./containers/Decision'))
 
+
+const CenterCircle = () => (
+  <div className='d-flex justify-content-center align-items-center fullscreen'>
+                    <CircularProgress/>
+  </div>
+)
 
 function App(props) {
    const [screen,resetScreen] = useState({loading:true,error:false})
@@ -46,9 +52,7 @@ function App(props) {
 
   if (screen.loading) {
     return (<>
-              <div className='d-flex justify-content-center align-items-center fullscreen'>
-                    <CircularProgress/>
-              </div>
+              <CenterCircle/>
             </>)
   }else if (screen.error){
     return <ServerError/>
@@ -60,18 +64,22 @@ function App(props) {
                     if(query.client_id === undefined || query.redirect_uri === undefined){
                       return <Redirect to='/' />
                     }else{
-                      return <Oauth query={query} /> 
+                      return (<Suspense fallback={<CenterCircle/>}>
+                                <Oauth query={query} /> 
+                              </Suspense>)
                     }
                     }}  />
                 <Route exact path='/oauth/decision' component={(prop)=>{
                    const transaction_id = querystring.parse(prop.location.search).transaction_id
                    if(transaction_id !== undefined){
-                      return <Decision transaction_id={transaction_id}/>
+                      return (<Suspense fallback={<CenterCircle/>}>
+                                <Decision transaction_id={transaction_id}/>
+                              </Suspense>)
                     }else{
                       return <Redirect to='/' />
                     }
                   }} />
-                <Route path='/' component={DevConsole} />
+                <Route path='/' component={()=>(<Suspense fallback={<CenterCircle/>}><DevConsole/></Suspense>)} />
                 <Route >
                   <Redirect to='/' />
                 </Route>
@@ -83,32 +91,60 @@ function App(props) {
                     if(query.client_id === undefined || query.redirect_uri === undefined){
                       return <Redirect to='/' />
                     }else{
-                      return <Oauth query={query} /> 
+                      return (<Suspense fallback={<CenterCircle/>}>
+                                <Oauth query={query} /> 
+                              </Suspense>)
                     }
                     }} />
                  
-                  <Route exact path='/' component={LandingPage} />
+                  <Route exact path='/' component={()=>(
+                    <Suspense fallback={<CenterCircle/>}>
+                      <LandingPage/>
+                    </Suspense>)} />
                   <Route exact path='/login' component={(prop)=>{
                     const transaction_id = querystring.parse(prop.location.search).transaction_id
                     if(transaction_id !== undefined){
-                      return <Authenticate page='login' transaction_id={transaction_id} />
+                      return (
+                        <Suspense fallback={<CenterCircle/>}>
+                          <Authenticate page='login' transaction_id={transaction_id} />
+                        </Suspense>)
                     }else{
-                      return <Authenticate page='login' />
+                      return (
+                        <Suspense fallback={<CenterCircle/>}>
+                          <Authenticate page='login' />
+                        </Suspense>)
                     }
                     }} />
-                  <Route exact path='/signup' component={()=><Authenticate page='signup' />}/>
+
+                  <Route exact path='/signup' component={()=>(
+                    <Suspense fallback={<CenterCircle/>}>
+                      <Authenticate page='signup' />
+                    </Suspense>)} 
+                  />
+                  
                   <Route exact path='/resetpassword' component={(prop)=>{
                         const val = querystring.parse(prop.location.search)
                         const token = val.pt
-                        return <ResetPassword token = {token} />
-                      }}/>/>
+                        return (
+                         <Suspense fallback={<CenterCircle/>}>
+                           <ResetPassword token = {token} />
+                         </Suspense>)
+                      }}/>
                   <Route path='/verifyemail' component={(prop)=>{
                         const val = querystring.parse(prop.location.search)
                         const token = val.vt
-                        return <VerifyEmail token = {token} />
+                        return (<Suspense fallback={<CenterCircle/>}>
+                                  <VerifyEmail token = {token} />
+                                </Suspense>)
                       }}/>
-                  <Route exact path='/contact' component={Contact} />
-                  <Route component={Page404}/>
+                  <Route exact path='/contact' component={()=>(
+                    <Suspense fallback={<CenterCircle/>}>
+                      <Contact/>
+                    </Suspense>)} />
+                  <Route component={()=>(
+                    <Suspense fallback={<CenterCircle/>}>
+                      <Page404/>
+                    </Suspense>)} />
               </Switch>)
     }
   }
