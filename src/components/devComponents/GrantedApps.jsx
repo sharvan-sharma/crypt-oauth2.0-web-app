@@ -35,10 +35,8 @@ function GrantedApps(){
     }else if(state.flag === 2){
         return (
             <>
-                    <p className='h4'>Access Granted Applications</p>
-                    <Divider/>
                     {(state.apps.length === 0)?
-                    <Alert severity='info' className='my-4'>You haven't given access to Any Registered CryPt Application</Alert>:
+                    <Alert severity='info' className='my-4'>You haven't given access to any registered CryPt Application</Alert>:
                     <></>}
                     {
                         state.apps.map((app,index)=>{

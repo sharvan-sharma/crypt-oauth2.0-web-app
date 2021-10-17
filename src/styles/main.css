@@ -66,4 +66,18 @@
     display:none !important
 }
 }
-
+.mh-100 {
+    min-height: 100vh;
+}
+.application-card-media {
+    height: 100px;
+}
+.user-display {
+    width: 1024px;
+    margin-top: 65px;
+}
+@media screen and (max-width: 1024px) {
+    .user-display {
+        width: 100%;
+    }
+}

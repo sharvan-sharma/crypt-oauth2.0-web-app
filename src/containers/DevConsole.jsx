@@ -14,7 +14,8 @@ import LinkIcons from '../components/LinkIcons'
 function DevConsole(){
 
     return (
-        <div >
+        <div className="d-flex justify-content-between flex-column mh-100">
+            <div>
                     <Navbar />
                     <Divider/>
                     <Switch>
@@ -37,7 +38,8 @@ function DevConsole(){
                         <Redirect to = '/'/>
                     </Route>
                 </Switch>
-                <div className='d-flex justify-content-between p-4 border-top broder-gray'>
+                </div>
+                <div className='d-flex justify-content-between p-4 border-top border-gray'>
                     <LinkIcons/>
                         <CopyRight />
                     </div>

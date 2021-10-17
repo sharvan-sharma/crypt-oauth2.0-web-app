@@ -2,22 +2,31 @@ import React,{useState} from 'react';
 import GrantedApps from './GrantedApps'
 import Store from './Store'
 import Fade from '@material-ui/core/Fade'
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Paper from '@material-ui/core/Paper';
 
 function UserDisplay(){
 
-const [state,setstate] = useState(true)
+const [value, setValue] = React.useState(0);
 
-const active = 'btn btn-dark rounded-pill fm'
+const handleChange = (event, newValue) => {
+  setValue(newValue);
+};
 
-const inactive = 'btn btn-light rounded-pill fm'
-
-return (<div className='d-flex flex-column  align-items-center' style={{marginTop:'10vh'}}>
-                <div className='col-12 col-lg-6 p-2 col-md-8 d-flex border-bottom border-gray'>
-                    <button className={(state)?active+' mr-2':inactive+' mr-2'} onClick={()=>setstate(true)}>Store</button>
-                    <button className={(state)?inactive:active} onClick={()=>setstate(false)}>Granted Apps</button>
-                </div>
-                <div className='col-12 col-lg-6 p-2 col-md-8 mb-5'>
-                    {(state)?
+return (<div className='d-flex flex-column align-items-center' >
+        <div className='user-display'>
+                <Paper className="w-100"> 
+                        <Tabs
+                                value={value}
+                                onChange={handleChange}
+                        >
+                        <Tab label="Store" style={{outline: 'none'}} />
+                        <Tab label="Authorized Oauth Apps" style={{outline: 'none'}} />
+                        </Tabs>
+                </Paper>
+                <div className='py-2 mb-5'>
+                    {(value === 0)?
                     <Fade in={true}>
                             <Store />
                     </Fade>:
@@ -25,6 +34,7 @@ return (<div className='d-flex flex-column  align-items-center' style={{marginTo
                             <GrantedApps />
                     </Fade>}
                 </div>
+        </div>
         </div>)
 }
 
