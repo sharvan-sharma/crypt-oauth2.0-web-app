@@ -16,7 +16,7 @@ function Login(props){
                     {(flag)?<LoginForm setflag={setflag} transaction_id={props.transaction_id} />
                     :<ForgotPassword setflag={setflag} transaction_id={props.transaction_id}/>}
                 </Fade>
-                <p className='mt-4 mb-2 pt-4 pb-2'>Need a CryPt account?<Link to='/signup'>Create New Account</Link></p>
+                <p className='mt-4 mb-2 pt-4 pb-2'>Need a CryPt account? <Link to='/signup'>Create a New Account</Link></p>
             </div>
         </Fade>
     )
